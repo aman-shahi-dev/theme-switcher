@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: var(--bg-background);
+  --color-text: var(--text-foreground);
+}
+
+:root {
+  --bg-background: #ffffff;
+  --text-foreground: #333333;
+}
+
+.dark {
+  --bg-background: #111111;
+  --text-foreground: #ffffff;
+}
+
+.vibe {
+  --bg-background: #4c1d95;
+  --text-foreground: #ffffff;
+}
+
+@layer utilities {
+  .app-background {
+    background-color: var(--bg-background);
+    color: var(--text-foreground);
+    transition: background-color 0.5s ease, color 0.3s ease;
+    
+    position: relative;
+    isolation: isolate; 
+    overflow: hidden;  
+  }
+
+  .app-background::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(135deg, #4c1d95 0%, #db2777 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+}
+
+.vibe .app-background::before {
+  opacity: 1;
+}
